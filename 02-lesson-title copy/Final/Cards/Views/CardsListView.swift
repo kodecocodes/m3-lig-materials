@@ -38,6 +38,7 @@ struct CardsListView: View {
   @EnvironmentObject var store: CardStore
   @State private var selectedCard: Card?
   @State private var listState = ListState.list
+  @State private var showSettings = false
   @Namespace private var namespace
 
   var columns: [GridItem] {
@@ -107,10 +108,12 @@ struct CardsListView: View {
         } else {
           fatalError("Unable to locate selected card")
         }
-      }.toolbar {
+      }
+      .toolbar {
           ToolbarSpacer(.flexible, placement: .bottomBar)
           ToolbarItemGroup(placement: .bottomBar) {
               createButton
+              settingsButton
           }
       }
     }
@@ -151,6 +154,16 @@ struct CardsListView: View {
       selectedCard = store.addCard()
     } label: {
       Label("Create New", systemImage: "plus")
+    }
+  }
+    
+  var settingsButton: some View {
+    Button {
+      showSettings = true
+    } label: {
+      Label("Settings", systemImage: "gear")
+    }.sheet(isPresented: $showSettings) {
+        SettingsView()
     }
   }
 }
