@@ -46,13 +46,14 @@ struct CardToolbar: ViewModifier {
   func body(content: Content) -> some View {
     content
     .toolbar {
-      ToolbarItemGroup(placement: .topBarTrailing) {
+      ToolbarItem(placement: .topBarTrailing) {
         menu
+      }
+      ToolbarItem(placement: .topBarTrailing) {
         Button("Done") {
           dismiss()
         }
       }
-
       ToolbarItem(placement: .topBarLeading) {
         let uiImage = UIImage.screenshot(
           card: card,
@@ -64,14 +65,12 @@ struct CardToolbar: ViewModifier {
             "Card",
             image: image)) {
               Image(systemName: "square.and.arrow.up")
-            }
+        }
       }
-        
-      ToolbarItemGroup(placement: .bottomBar) {
+      ToolbarItem(placement: .bottomBar) {
         BottomToolbar(
           card: $card,
-          modal: $currentModal
-        )
+          modal: $currentModal)
       }
     }
     .sheet(item: $currentModal) { item in
