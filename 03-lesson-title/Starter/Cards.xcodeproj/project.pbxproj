@@ -15,22 +15,9 @@
 		82E7592A2CE4649D00E9C11B /* Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		82BCC4EB2CE7457B00A4761C /* Exceptions for "Cards" folder in "Cards" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 82E759292CE4649D00E9C11B /* Cards */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		82E7592C2CE4649D00E9C11B /* Cards */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				82BCC4EB2CE7457B00A4761C /* Exceptions for "Cards" folder in "Cards" target */,
-			);
 			path = Cards;
 			sourceTree = "<group>";
 		};

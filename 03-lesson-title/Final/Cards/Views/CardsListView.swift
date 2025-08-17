@@ -108,15 +108,14 @@ struct CardsListView: View {
         } else {
           fatalError("Unable to locate selected card")
         }
-      }
-      .toolbar {
-          if(selectedCard == nil) {
-              ToolbarSpacer(.flexible, placement: .bottomBar)
-              ToolbarItemGroup(placement: .bottomBar) {
-                  createButton
-                  settingsButton
-              }
-          }
+      }.toolbar {
+        if(selectedCard == nil) {
+            ToolbarSpacer(.flexible, placement: .bottomBar)
+            ToolbarItemGroup(placement: .bottomBar) {
+            createButton
+            settingsButton
+            }
+        }
       }
     }
     .background(
@@ -156,7 +155,12 @@ struct CardsListView: View {
       selectedCard = store.addCard()
     } label: {
       Label("Create New", systemImage: "plus")
+        .frame(maxWidth: .infinity)
     }
+    .font(.system(size: 16, weight: .bold))
+    .padding([.top, .bottom], 10)
+    .background(Color.bar)
+    .accentColor(.white)
   }
     
   var settingsButton: some View {
@@ -165,7 +169,7 @@ struct CardsListView: View {
     } label: {
       Label("Settings", systemImage: "gear")
     }.sheet(isPresented: $showSettings) {
-        SettingsView()
+      SettingsView()
     }
   }
 }

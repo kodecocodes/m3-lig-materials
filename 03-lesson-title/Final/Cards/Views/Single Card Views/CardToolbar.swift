@@ -47,66 +47,65 @@ struct CardToolbar: ViewModifier {
 
   func body(content: Content) -> some View {
     content
-          .toolbar {
-              ToolbarItemGroup(placement: .topBarTrailing) {
-                  menu
-                  Button("Done") {
-                      dismiss()
-                  }
-              }
-              
-              ToolbarItem(placement: .topBarLeading) {
-                  let uiImage = UIImage.screenshot(
-                    card: card,
-                    size: Settings.cardSize)
-                  let image = Image(uiImage: uiImage)
-                  ShareLink(
-                    item: image,
-                    preview: SharePreview(
-                        "Card",
-                        image: image)) {
-                            Image(systemName: "square.and.arrow.up")
-                        }
-              }
-              
-              ToolbarItemGroup(placement: .bottomBar) {
-                  GlassEffectContainer(spacing: 60.0) {
-                      HStack(spacing: 40.0) {
-                          Image(systemName: "scribble.variable")
-                              .frame(width: 40.0, height: 40.0)
-                              .glassEffect()
-                              .glassEffectID("pencil", in: namespace)
-                          
-                          
-                          if isExpanded {
-                              Image(systemName: "eraser.fill")
-                                  .frame(width: 40.0, height: 40.0)
-                                  .glassEffect()
-                                  .glassEffectID("eraser", in: namespace)
-                              Image(systemName: "textformat.size")
-                                  .frame(width: 40.0, height: 40.0)
-                                  .glassEffect()
-                                  .glassEffectID("text", in: namespace)
-                          }
-                      }
-                  }
-              }
-              
-              ToolbarItemGroup(placement: .bottomBar) {
-                  Spacer()
-              }
-              
-              ToolbarItemGroup(placement: .bottomBar) {
-                  Button {
-                      withAnimation {
-                          isExpanded.toggle()
-                      }
-                  } label: {
-                      Label("More", systemImage: "arrow.up.left.and.arrow.down.right")
-                  }
-                  .buttonStyle(.glass)
-              }
-          }
+    .toolbar {
+      ToolbarItem(placement: .topBarTrailing) {
+        menu
+      }
+      ToolbarItem(placement: .topBarTrailing) {
+        Button("Done") {
+          dismiss()
+        }
+      }
+      ToolbarItem(placement: .topBarLeading) {
+        let uiImage = UIImage.screenshot(
+          card: card,
+          size: Settings.cardSize)
+        let image = Image(uiImage: uiImage)
+        ShareLink(
+          item: image,
+          preview: SharePreview(
+            "Card",
+            image: image)) {
+              Image(systemName: "square.and.arrow.up")
+        }
+      }
+    ToolbarItemGroup(placement: .bottomBar) {
+        GlassEffectContainer(spacing: 60.0) {
+            HStack(spacing: 40.0) {
+                Image(systemName: "scribble.variable")
+                    .frame(width: 40.0, height: 40.0)
+                    .glassEffect()
+                    .glassEffectID("pencil", in: namespace)
+                
+                if isExpanded {
+                    Image(systemName: "eraser.fill")
+                        .frame(width: 40.0, height: 40.0)
+                        .glassEffect()
+                        .glassEffectID("eraser", in: namespace)
+                    Image(systemName: "textformat.size")
+                        .frame(width: 40.0, height: 40.0)
+                        .glassEffect()
+                        .glassEffectID("text", in: namespace)
+                }
+            }
+        }
+    }
+        
+    ToolbarItemGroup(placement: .bottomBar) {
+        Spacer()
+    }
+        
+    ToolbarItemGroup(placement: .bottomBar) {
+        Button {
+            withAnimation {
+                isExpanded.toggle()
+            }
+        } label: {
+            Label("More", systemImage: "arrow.up.left.and.arrow.down.right")
+        }
+        .buttonStyle(.glass)
+    }
+   }
     .sheet(item: $currentModal) { item in
       switch item {
       case .stickerModal:

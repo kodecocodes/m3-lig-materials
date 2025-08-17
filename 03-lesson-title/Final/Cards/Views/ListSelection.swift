@@ -48,7 +48,6 @@ struct ListSelection: View {
     }
     .pickerStyle(.segmented)
     .frame(width: 200)
-    .glassEffect(.regular.interactive())
   }
 }
 
